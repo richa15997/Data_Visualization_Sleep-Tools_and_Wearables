@@ -1,0 +1,71 @@
+body {
+	padding-top: 70px;
+}
+
+.fitbit-logo {
+	height: 30px;
+}
+
+.btn-fitbit {
+	color: #3272aa;
+	height: auto;
+}
+
+#login-submit {
+	color:#fff;
+}
+
+.panel-heading {
+	padding: 15px 15px 20px 15px;
+}
+
+#visualize {
+	padding: 4px 12px;
+}
+
+.nvtooltip {
+	border: none;
+}
+
+#dataTable {
+	table-layout:fixed;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+svg {
+	width:100vw;
+}
+
+.nvd3, .nvd3-svg {
+	width:100% !important;
+}
+
+.modal-header-primary {
+	color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
+#chart .nv-series:nth-child(1) {
+  display: none;
+}
+
+.nv-focus .nv-groups .nv-group {
+	fill-opacity: 0.8 !important;
+	stroke-width:0.1 !important;
+}
+
+.nv-bars rect {
+	fill-opacity: 1 !important;
+	stroke-width:0.1 !important;
+}

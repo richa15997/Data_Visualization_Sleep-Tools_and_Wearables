@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codeply preview</title>
+  <base target="_self">
+  <meta name="description" content="This snippet is a multi-level left side vertical nav, that automatically collapses to a narrow column of icons (facebook-style) when screen-width shrinks. When the sidebar is collapsed, the hamburger menu in the top right can be used to toggle the nav. The sidebar nav position moves to the top on smaller screens." />
+  <meta name="google" value="notranslate">
+  <link rel="shortcut icon" href="/images/cp_ico.png">
+
+
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+<script src="//cdn.jsdelivr.net/jstat/1.5.2/jstat.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="http://mbostock.github.com/d3/d3.v2.js"></script>
+<script src="jquery.min.js"></script>
+<script src="jqueryui.min.js"></script>
+ 
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+<script src = "http://d3js.org/d3.v3.js"></script>
+<script src = "http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.js"></script>
+<link href="resources/css/nv.d3.min.css" rel="stylesheet" type="text/css">
+ <script src="resources/js/nv.d3.min.js"></script>   
+<script src="stream_layers.js"></script>
+
+<script src="javascript_files/bmi_final1.js"></script>
+<script src="javascript_files/activity_weekday.js"></script>
+<script src="javascript_files/activity_weekend.js"></script>
+<script src="javascript_files/activity.js"></script>
+  
+
+  
+
+  <style type="text/css">
+  html, body {
+   height: 100%;
+}
+
+.wrapper, .row {
+   height: 100%;
+   margin-left:0;
+   margin-right:0;
+}
+
+.wrapper:before, .wrapper:after,
+.column:before, .column:after {
+    content: "";
+    display: table;
+}
+
+.wrapper:after,
+.column:after {
+    clear: both;
+    
+}
+
+#sidebar .collapse.in {
+    display: inline;
+}
+
+#sidebar > .nav>li>a {
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(255,255,255);
+}
+
+#main {
+    
+    left: 0;
+}
+.navbar navbar-inverse{
+   padding-bottom: 0 !important;
+}
+navbar navbar-inverse{
+   margin-bottom: 0 !important;
+}
+/*
+ * off canvas sidebar
+ * --------------------------------------------------
+ */
+.side-body {
+    margin-left: 5px;
+    margin-top: 70px;
+    position: relative;
+    -moz-animation: bodyslideout 300ms forwards;
+    -o-animation: bodyslideout 300ms forwards;
+    -webkit-animation: bodyslideout 300ms forwards;
+    animation: bodyslideout 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .body-slide-in {
+    -moz-animation: bodyslidein 300ms forwards;
+    -o-animation: bodyslidein 300ms forwards;
+    -webkit-animation: bodyslidein 300ms forwards;
+    animation: bodyslidein 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+@media screen and (max-width: 768px) {
+    #sidebar {
+        min-width: 44px;
+    }
+    
+    #main {
+        width: 1%;
+        left: 0;
+    }
+    
+    #sidebar .visible-xs {
+       display:inline !important;
+    }
+    
+    .row-offcanvas {
+       position: relative;
+       -webkit-transition: all 0.4s ease-in-out;
+       -moz-transition: all 0.4s ease-in-out;
+       transition: all 0.4s ease-in-out;
+    }
+    
+    .row-offcanvas-left.active {
+       left: 45%;
+    }
+    
+    .row-offcanvas-left.active .sidebar-offcanvas {
+       left: -45%;
+       position: absolute;
+       top: 0;
+       width: 45%;
+    }
+    .bmi {
+      width:100%;
+      heigth:100%;
+    }
+} 
+ 
+ 
+@media screen and (min-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-left.active {
+    left: 3%;
+  }
+
+  .row-offcanvas-left.active .sidebar-offcanvas {
+    left: -3%;
+    position: absolute;
+    top: 0;
+    width: 3%;
+    text-align: center;
+    min-width:42px;
+  }
+}
+  #main {
+    left: 0;
+  }
+  
+  
+#bmi svg {
+  height: 400px;
+  width: 800px;
+}
+.btb{
+   align-items: center;
+}
+@media all and (min-width:1200px){.container{width:1450px !important;}}
+
+</style>
+
+</head>
+<body>
+
+        
+  
+   <div class="wrapper">
+        <!-- sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SleepTools and Wearables</a>
+            </div>
+            <!-- Top Menu Items -->
+            
+            </nav><br><br>
+        <div class="collapse in column col-md-2 col-xs-1 sidebar-offcanvas navbar-inverse navbar-ex1-collapse" id="sidebar" style="height: 150% !important">
+         <ul class="nav navbar-nav side-nav">
+         <!--hamburger-->
+          <div class="form-group">
+                                <br>
+                               <span class="label label-default">Selection 1</span>
+                               <br><br>
+                                <select id="mainMenu1" onchange="displayAccordingly1()" class="form-control">
+                                <option value="">--</option>
+                                <option value="individual">Individual</option>
+                                <option value="group">Group</option>
+                                </select>
+                            
+                                
+                                 <select id="individual1" class="form-control" style="visibility:hidden" onchange="bmi(); weekday1(); weekend1(); activity1();">
+                                <option value="">--</option>
+                                <option value="BC_43">BC_43</option>
+                                <option value="BC_45">BC_45</option>                                
+                                </select>
+                                 
+                                  <select id="group1"  class="form-control" style="visibility: hidden" onchange="bmi(); weekday1(); weekend1(); activity1();">
+                                <option value="">--</option>
+                                <option value="BC">BC</option>
+                                <option value="LC">LC</option>
+                                </select>
+                                  
+                                  <input type="hidden" id="selection1" value="">
+                                <br><br>
+                                
+                                <div id="refresh"><a href="http://localhost:8081/qcri_project/bootstrap/startbootstrap-sb-admin-gh-pages/dashboard.html"><i class="fa fa-refresh" ></i><label>Refresh</label></a></div>
+                                <br><br>
+                                  
+                                     <span class="label label-default">Selection 2</span><br><br>
+                                    <select id="mainMenu2" onchange="displayAccordingly2()" class="form-control" >
+                                   <option value="">--</option>
+                                   <option value="individual">Individual</option>
+                                    <option value="group">Group</option>
+                                    </select>
+                            
+                                <select id="individual2" class="form-control" style="visibility:hidden" onchange="bmi(); weekday2(); weekend2(); activity2();">
+                                <option value="">--</option>
+                                <option value="BC_43">BC_43</option>
+                                <option value="BC_45">BC_45</option>                                
+                                </select>
+                                 
+                                <select id="group2"  class="form-control" style="visibility:hidden" onchange="bmi(); weekday2(); weekend2(); activity2();">
+                                <option value="">--</option>
+                                <option value="BC">BC</option>
+                                <option value="LC">LC</option>
+                                </select>
+                                  
+                                  <input type="hidden" id="selection2" value="">
+                                <br><br>
+                                     <br><br>
+                                  
+                        
+                        </div>
+         </ul>
+           </div>
+        
+        
+        <!-- /sidebar -->
+
+        <!-- main right col -->
+        <br>
+        <div class="column col-md-10 col-xs-11" id="left-sidebar">
+           <p><a href="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-2x"></i></a></p>
+        </div>
+       <div class="container">
+        <div class="row">          
+        <div class="col-md-6 xs-6">
+         
+          
+                    <header class="row">          
+                      <div class="col-md-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> ActivityLevel per Day</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div class="flot-chart-content" id="activity1"><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </header>
+        
+                
+        
+               
+            
+              <div class="row">          
+                      <div class="col-md-12">                   
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> BMI Comparison</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="bmi-chart">
+                                    <div id="bmi" class="flot-chart-content" ><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+              </div>
+                    
+               
+                
+              <div class="row">          
+                      <div class="col-md-12">
+                    
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> ActivityLevel per Day</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div class="flot-chart-content" id="activity2"><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+              </div>
+                    
+         </div>
+          
+        
+        
+       
+        <div class="col-md-4 xs-6">
+         
+        
+         
+         
+        
+       
+       <div class="row"> 
+        <div class="col-md-12" id="rightCol">
+          <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> WeekDay </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div id="activity_weekday1" class="flot-chart-content" ><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+       </div>
+        
+        <div class="row"> 
+        <div class="col-md-12" id="rightCol">
+         <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> WeekDay </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div id="activity_weekday2" class="flot-chart-content" ><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+        </div>
+        
+         <div class="row"> 
+            <div class="col-md-12" id="rightCol">
+                <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> WeekEnd </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div id="activity_weekend1" class="flot-chart-content" ><svg></svg></div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+         </div>
+            
+       <div class="row"> 
+         <div class="col-md-12" id="rightCol">
+            <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> WeekEnd </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="activity-chart">
+                                    <div id="activity_weekend2" class="flot-chart-content" ><svg></svg></div>
+               
+                                </div>
+                            </div>
+                        </div>
+        </div>
+       </div>
+     </div>
+      
+ </div>
+</div><!--ends the container-->
+   </div>      <!-- /main -->
+
+
+   
+ 
+  
+  
+  <script>
+  /* off-canvas sidebar toggle for the hamburger menu*/
+$('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+    $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
+});
+
+$(function () {
+    $('.navbar-toggle').click(function () {
+        $('.navbar-nav').toggleClass('slide-in');
+        $('.side-body').toggleClass('body-slide-in');
+        $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+       
+        
+    });
+   
+   // Remove menu for searching
+   $('#search-trigger').click(function () {
+        $('.navbar-nav').removeClass('slide-in');
+        $('.side-body').removeClass('body-slide-in');
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+        //$('.absolute-wrapper').removeClass('slide-in');
+
+    });
+});
+
+//styling the panels on dashboard
+$("#sidebar").css("height","100%");
+
+$("#bmi svg").css("width","100%");
+$("#activity_weekday1 svg").css("width","100%");
+$("#activity_weekday2 svg").css("width","100%");
+$("#activity_weekend1 svg").css("width","100%");
+$("#activity_weekend2 svg").css("width","100%");
+
+//function used to dynamically display the type of group or individual depending on wheh
+         function displayAccordingly1() {
+
+            //Call mainMenu the main dropdown menu
+            var mainMenu = document.getElementById('mainMenu1');
+
+            //Create the new dropdown menu          
+            if (mainMenu.value == "individual") { //The person chose fruit
+
+               
+               $("#individual1").css('visibility','visible');
+                $("#group1").css('visibility','hidden');
+               $( "#selection1" ).val("individual1") ;
+                
+                 var ans = document.getElementById('selection1');
+                 console.log(ans.value
+                 
+
+            } else if (mainMenu.value == "group") { 
+
+               
+                $("#group1").css('visibility','visible');
+                $("#individual1").css('visibility','hidden');
+               $( "#selection1" ).val('group1') ;
+              
+            }
+
+        }
+        function displayAccordingly2() {
+
+            
+            var mainMenu = document.getElementById('mainMenu2');
+
+            //Create the new dropdown menu
+          
+            if (mainMenu.value == "individual") { 
+              
+               $("#individual2").css('visibility','visible');
+                $("#group2").css('visibility','hidden');
+               $( "#selection2" ).val("individual2") ;
+                
+                 var ans = document.getElementById('selection2');
+               
+            } else if (mainMenu.value == "group") { 
+                $("#group2").css('visibility','visible');
+                $("#individual2").css('visibility','hidden');
+               $( "#selection2" ).val('group2') ;
+                
+            }
+
+        }
+  </script>
+
+</body>
+</html>
