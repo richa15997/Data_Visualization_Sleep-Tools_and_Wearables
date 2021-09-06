@@ -1,4 +1,4 @@
-# data-visualization-sleep-tools-and-wearables
+# Data_Visualization_Sleep_Tools_and_Wearables
 
 This project involves visualising real Actigraphy Data of children, helping to improve a child’s health in day to day life using features like BMI, activity exertion plotted with continuous time. The live data plots would help predict the reason of a child’s poor health from previous database, and also help to predict sleep performance of a child that night.
 
